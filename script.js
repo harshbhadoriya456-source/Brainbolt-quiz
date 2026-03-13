@@ -291,6 +291,7 @@ function nextPuzzle() {
 }
 
 function endGame() {
+  saveScoreToSheet(score, currentCategory, currentDifficulty);
   playSound('complete');
   const avgTime = correctCount > 0 ? Math.round(totalTimeUsed / puzzles[currentCategory][currentDifficulty].length) : 0;
 
@@ -527,5 +528,23 @@ function loginUser() {
 
   // go to home screen
   show("home-screen");
+
+}
+function saveScoreToSheet(score, currentCategory, currentDifficulty) {
+
+  const name = localStorage.getItem("bb_user");
+  const email = document.getElementById("player-email").value;
+
+  fetch("https://script.google.com/macros/s/AKfycbxtN9nNIlpYTW0zlWJv9Zuw3ntuChcZcV8cYPKuSaoAa/exec", {
+    method: "POST",
+    body: JSON.stringify({
+      name: name,
+      email: email,
+      score: score,
+      category: currentCategory,
+      difficulty: currentDifficulty,
+      time: new Date().toLocaleString()
+    })
+  });
 
 }
