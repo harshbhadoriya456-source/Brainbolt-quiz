@@ -516,7 +516,7 @@ function loginUser() {
   localStorage.setItem("bb_user", name);
 
   // send data to Google Sheet
-  fetch("YOUR_GOOGLE_SCRIPT_URL", {
+  fetch("https://script.google.com/macros/s/AKfycbxtN9nNIlpYYTW0zlWJv9Zuu3ntuChcZcV8cYPKuSaoAaZ7obqdOnSKcncyjnnilRq3/exec", {
     method: "POST",
     body: JSON.stringify({
       name: name,
