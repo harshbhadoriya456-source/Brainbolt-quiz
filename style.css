@@ -710,3 +710,71 @@ button:active {
   pointer-events: none;
   animation: scoreFloat 1s ease forwards;
 }
+
+/* glowing moving border */
+.glow-btn {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.glow-btn::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 50px;
+
+  background: linear-gradient(90deg,
+      #7c3aed,
+      #a78bfa,
+      #60a5fa,
+      #34d399,
+      #7c3aed);
+
+  background-size: 300% 300%;
+  animation: borderMove 4s linear infinite;
+  z-index: -1;
+}
+
+.glow-btn::after {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  background: linear-gradient(135deg, #7c3aed, #4f46e5);
+  border-radius: 50px;
+  z-index: -1;
+}
+
+@keyframes borderMove {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 300% 50%;
+  }
+}
+
+.burst-particle {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: burstMove 0.8s ease-out forwards;
+}
+
+
+@keyframes burstMove {
+
+  0% {
+    transform: scale(1) translate(0, 0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(0.5) translateY(-80px);
+    opacity: 0;
+  }
+
+}
