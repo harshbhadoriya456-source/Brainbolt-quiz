@@ -110,9 +110,9 @@ let leaderboard = JSON.parse(localStorage.getItem('bb_leaderboard') || '[]');
 
 const timeLimits = { easy: 90, medium: 60, hard: 40 };
 const diffInfo = {
-  easy:   '90s timer • Hints allowed • 3 puzzles',
+  easy: '90s timer • Hints allowed • 3 puzzles',
   medium: '60s timer • Hints cost more • 3 puzzles',
-  hard:   '40s timer • No hints • 3 harder puzzles'
+  hard: '40s timer • No hints • 3 harder puzzles'
 };
 
 // ── Audio ──
@@ -151,7 +151,7 @@ function playSound(type) {
       gain.gain.exponentialRampToValueAtTime(0.001, ac.currentTime + 0.05);
       osc.start(); osc.stop(ac.currentTime + 0.05);
     } else if (type === 'complete') {
-      [523,659,784,1047].forEach((f, i) => {
+      [523, 659, 784, 1047].forEach((f, i) => {
         const o2 = ac.createOscillator();
         const g2 = ac.createGain();
         o2.connect(g2); g2.connect(ac.destination);
@@ -162,7 +162,7 @@ function playSound(type) {
         o2.stop(ac.currentTime + i * 0.12 + 0.3);
       });
     }
-  } catch(e) {}
+  } catch (e) { }
 }
 
 // ── Difficulty ──
@@ -303,8 +303,8 @@ function endGame() {
   // Result icon & message
   const pct = correctCount / puzzles[currentCategory][currentDifficulty].length;
   const icons = ['😅', '🤔', '🧠', '🏆'];
-  const msgs  = ['Keep practicing!', 'Not bad!', 'Great thinking!', 'Genius level!'];
-  const idx   = pct === 0 ? 0 : pct < 0.5 ? 1 : pct < 1 ? 2 : 3;
+  const msgs = ['Keep practicing!', 'Not bad!', 'Great thinking!', 'Genius level!'];
+  const idx = pct === 0 ? 0 : pct < 0.5 ? 1 : pct < 1 ? 2 : 3;
   document.getElementById('result-icon').textContent = icons[idx];
   document.getElementById('result-message').textContent = msgs[idx];
 
@@ -330,12 +330,12 @@ function showLeaderboard() {
   if (leaderboard.length === 0) {
     list.innerHTML = '<p style="color:#4c4575;margin:20px 0">No scores yet. Play a round first!</p>';
   } else {
-    const rankClass = ['gold','silver','bronze'];
-    const rankSymbol = ['🥇','🥈','🥉'];
+    const rankClass = ['gold', 'silver', 'bronze'];
+    const rankSymbol = ['🥇', '🥈', '🥉'];
     list.innerHTML = leaderboard.map((e, i) => `
       <div class="lb-row">
-        <div class="lb-rank ${rankClass[i] || ''}">${rankSymbol[i] || (i+1)}</div>
-        <div class="lb-name">${e.category.charAt(0).toUpperCase()+e.category.slice(1)} · ${e.difficulty}</div>
+        <div class="lb-rank ${rankClass[i] || ''}">${rankSymbol[i] || (i + 1)}</div>
+        <div class="lb-name">${e.category.charAt(0).toUpperCase() + e.category.slice(1)} · ${e.difficulty}</div>
         <div class="lb-meta">${e.correct} correct · ${e.date}</div>
         <div class="lb-score">${e.score}</div>
       </div>`).join('');
@@ -379,7 +379,7 @@ function spawnScoreFloat(text, positive) {
   el.textContent = text;
   el.style.color = positive ? '#34d399' : '#f87171';
   el.style.left = (window.innerWidth / 2 - 30) + 'px';
-  el.style.top  = (window.innerHeight / 2) + 'px';
+  el.style.top = (window.innerHeight / 2) + 'px';
   document.body.appendChild(el);
   setTimeout(() => el.remove(), 1000);
 }
@@ -391,8 +391,8 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
 
-const symbols = ['?','!','+','×','÷','=','∑','π','∞','◆','▲','●','★','√','%','Ω'];
-const colors  = ['#a78bfa','#60a5fa','#34d399','#f59e0b','#f472b6','#818cf8'];
+const symbols = ['?', '!', '+', '×', '÷', '=', '∑', 'π', '∞', '◆', '▲', '●', '★', '√', '%', 'Ω'];
+const colors = ['#a78bfa', '#60a5fa', '#34d399', '#f59e0b', '#f472b6', '#818cf8'];
 
 class Particle {
   constructor() { this.reset(true); }
@@ -401,7 +401,7 @@ class Particle {
     this.y = rand ? Math.random() * canvas.height : canvas.height + 20;
     this.size = Math.random() * 18 + 10;
     this.symbol = symbols[Math.floor(Math.random() * symbols.length)];
-    this.color  = colors[Math.floor(Math.random() * colors.length)];
+    this.color = colors[Math.floor(Math.random() * colors.length)];
     this.speedX = (Math.random() - 0.5) * 0.6;
     this.speedY = (Math.random() - 0.5) * 0.6;
     this.rotation = Math.random() * Math.PI * 2;
@@ -437,11 +437,11 @@ class Streak {
   reset() {
     this.x = Math.random() * canvas.width;
     this.y = Math.random() * canvas.height * 0.5;
-    this.length  = Math.random() * 100 + 50;
-    this.speed   = Math.random() * 3 + 1.5;
+    this.length = Math.random() * 100 + 50;
+    this.speed = Math.random() * 3 + 1.5;
     this.opacity = Math.random() * 0.3 + 0.1;
-    this.color   = colors[Math.floor(Math.random() * colors.length)];
-    this.angle   = Math.PI / 2 + (Math.random() - 0.5) * 0.4;
+    this.color = colors[Math.floor(Math.random() * colors.length)];
+    this.angle = Math.PI / 2 + (Math.random() - 0.5) * 0.4;
   }
   update() {
     this.x += Math.cos(this.angle) * this.speed;
@@ -453,41 +453,41 @@ class Streak {
     ctx.save();
     ctx.globalAlpha = this.opacity;
     const g = ctx.createLinearGradient(this.x, this.y,
-      this.x - Math.cos(this.angle)*this.length,
-      this.y - Math.sin(this.angle)*this.length);
+      this.x - Math.cos(this.angle) * this.length,
+      this.y - Math.sin(this.angle) * this.length);
     g.addColorStop(0, this.color);
     g.addColorStop(1, 'transparent');
     ctx.strokeStyle = g; ctx.lineWidth = 1.5;
     ctx.beginPath();
     ctx.moveTo(this.x, this.y);
-    ctx.lineTo(this.x - Math.cos(this.angle)*this.length, this.y - Math.sin(this.angle)*this.length);
+    ctx.lineTo(this.x - Math.cos(this.angle) * this.length, this.y - Math.sin(this.angle) * this.length);
     ctx.stroke();
     ctx.restore();
   }
 }
 
-const particles = Array.from({length: 55}, () => new Particle());
-const streaks   = Array.from({length: 10}, () => new Streak());
+const particles = Array.from({ length: 55 }, () => new Particle());
+const streaks = Array.from({ length: 10 }, () => new Streak());
 
 function drawOrbs() {
-  [{x:.1,y:.2,r:280,c:'rgba(124,58,237,0.08)'},{x:.9,y:.8,r:320,c:'rgba(96,165,250,0.06)'},{x:.5,y:0,r:220,c:'rgba(52,211,153,0.05)'}]
-  .forEach(o => {
-    const g = ctx.createRadialGradient(o.x*canvas.width,o.y*canvas.height,0,o.x*canvas.width,o.y*canvas.height,o.r);
-    g.addColorStop(0, o.c); g.addColorStop(1, 'transparent');
-    ctx.fillStyle = g; ctx.fillRect(0,0,canvas.width,canvas.height);
-  });
+  [{ x: .1, y: .2, r: 280, c: 'rgba(124,58,237,0.08)' }, { x: .9, y: .8, r: 320, c: 'rgba(96,165,250,0.06)' }, { x: .5, y: 0, r: 220, c: 'rgba(52,211,153,0.05)' }]
+    .forEach(o => {
+      const g = ctx.createRadialGradient(o.x * canvas.width, o.y * canvas.height, 0, o.x * canvas.width, o.y * canvas.height, o.r);
+      g.addColorStop(0, o.c); g.addColorStop(1, 'transparent');
+      ctx.fillStyle = g; ctx.fillRect(0, 0, canvas.width, canvas.height);
+    });
 }
 
 function drawConnections() {
   for (let i = 0; i < particles.length; i++)
-    for (let j = i+1; j < particles.length; j++) {
-      const dx = particles[i].x-particles[j].x, dy = particles[i].y-particles[j].y;
-      const d = Math.sqrt(dx*dx+dy*dy);
+    for (let j = i + 1; j < particles.length; j++) {
+      const dx = particles[i].x - particles[j].x, dy = particles[i].y - particles[j].y;
+      const d = Math.sqrt(dx * dx + dy * dy);
       if (d < 140) {
         ctx.beginPath();
         ctx.moveTo(particles[i].x, particles[i].y);
         ctx.lineTo(particles[j].x, particles[j].y);
-        ctx.strokeStyle = `rgba(167,139,250,${(1-d/140)*0.07})`;
+        ctx.strokeStyle = `rgba(167,139,250,${(1 - d / 140) * 0.07})`;
         ctx.lineWidth = 0.5; ctx.stroke();
       }
     }
@@ -502,3 +502,30 @@ function animate() {
 }
 
 animate();
+function loginUser() {
+
+  const name = document.getElementById("player-name").value;
+  const email = document.getElementById("player-email").value;
+
+  if (!name) {
+    alert("Please enter your name");
+    return;
+  }
+
+  // save name locally
+  localStorage.setItem("bb_user", name);
+
+  // send data to Google Sheet
+  fetch("YOUR_GOOGLE_SCRIPT_URL", {
+    method: "POST",
+    body: JSON.stringify({
+      name: name,
+      email: email,
+      time: new Date().toLocaleString()
+    })
+  });
+
+  // go to home screen
+  show("home-screen");
+
+}
