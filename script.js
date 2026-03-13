@@ -535,7 +535,7 @@ function saveScoreToSheet(score, currentCategory, currentDifficulty) {
   const name = localStorage.getItem("bb_user");
   const email = document.getElementById("player-email").value;
 
-  fetch("https://script.google.com/macros/s/AKfycbxtN9nNIlpYTW0zlWJv9Zuw3ntuChcZcV8cYPKuSaoAa/exec", {
+  fetch("https://script.google.com/macros/s/AKfycbxtN9nNIlpYYTW0zlWJv9Zuu3ntuChcZcV8cYPKuSaoAaZ7obqdOnSKcncyjnnilRq3/exec", {
     method: "POST",
     body: JSON.stringify({
       name: name,
