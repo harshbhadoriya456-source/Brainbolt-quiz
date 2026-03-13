@@ -259,6 +259,7 @@ function checkAnswer() {
     showCorrect();
     playSound('correct');
     spawnScoreFloat(`+${pts}`, true);
+    burstParticles();
   } else {
     currentStreak = 0;
     document.getElementById('feedback').textContent = `✗ Answer: ${puzzles[currentCategory][currentDifficulty][currentIndex].a}`;
@@ -548,3 +549,50 @@ function saveScoreToSheet(score, currentCategory, currentDifficulty) {
   });
 
 }
+function burstParticles() {
+
+  const colors = ["#a78bfa","#60a5fa","#34d399","#f59e0b","#f472b6"];
+
+  for (let i = 0; i < 20; i++) {
+
+    const particle = document.createElement("div");
+    particle.className = "burst-particle";
+
+    particle.style.left = Math.random() * window.innerWidth + "px";
+    particle.style.top = Math.random() * window.innerHeight + "px";
+    particle.style.background = colors[Math.floor(Math.random()*colors.length)];
+
+    document.body.appendChild(particle);
+
+    setTimeout(() => {
+      particle.remove();
+    }, 800);
+
+  }
+}
+function burstParticles() {
+
+  const colors = ["#a78bfa","#60a5fa","#34d399","#f59e0b","#f472b6"];
+
+  for (let i = 0; i < 20; i++) {
+
+    const particle = document.createElement("div");
+
+    particle.className = "burst-particle";
+
+    particle.style.left = Math.random() * window.innerWidth + "px";
+    particle.style.top = Math.random() * window.innerHeight + "px";
+
+    particle.style.background =
+      colors[Math.floor(Math.random()*colors.length)];
+
+    document.body.appendChild(particle);
+
+    setTimeout(() => {
+      particle.remove();
+    }, 800);
+
+  }
+
+}
+
